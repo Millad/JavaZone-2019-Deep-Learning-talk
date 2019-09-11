@@ -1,3 +1,6 @@
+# Millad Dagdoni
+# Dagdoni.com
+
 alpha = 0.1
 w = 0.5
 x = 4
