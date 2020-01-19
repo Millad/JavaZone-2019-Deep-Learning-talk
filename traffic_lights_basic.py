@@ -24,7 +24,7 @@ for step in range(20):
 
 
 #Predict Test
-lightsIsee = np.array([1,0,0])
-shouldIdriveWithoutSum = np.dot(lightsIsee, w)
-shouldIdrive = np.sum(np.dot(lightsIsee, w))
-print("Should you drive now? " + str(shouldIdrive > 0 ))
+lightsIseeArray = np.array([1,0,0])
+shouldIdriveSum = np.sum(np.dot(lightsIseeArray, w))
+shouldIdrive = shouldIdriveSum > 0
+print("Should you drive now? " + str(shouldIdrive))
