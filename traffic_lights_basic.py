@@ -3,7 +3,7 @@
 import numpy as np
 
 #Init stuff
-alpha = 0.8  #how fast do you want to move the slope?
+alpha = 0.99  #how fast do you want to move the slope?
 w = np.random.random((3,1)) - 1 #weights
 x = np.array([[1,0,0],[0,1,0],[0,0,1]]) #input
 y = np.array([1,1,0]).T #Output Wanted
