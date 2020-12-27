@@ -7,7 +7,6 @@ alpha = 0.99  #how fast do you want to move the slope?
 w = np.random.random((3,1)) - 1 #weights
 x = np.array([[1,0,0],[0,1,0],[0,0,1]]) #input
 y = np.array([1,1,0]).T #Output Wanted
-error = 0
 
 #learn
 if __name__ == "__main__":
