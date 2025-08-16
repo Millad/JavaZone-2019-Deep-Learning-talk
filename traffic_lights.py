@@ -1,5 +1,6 @@
 # Millad Dagdoni
 # Dagdoni.com
+# 02.03.2018
 import numpy as np
 
 #Init stuff
