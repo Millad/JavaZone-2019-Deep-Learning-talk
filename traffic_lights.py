@@ -3,24 +3,54 @@
 # 02.03.2018
 import numpy as np
 
-#Init stuff
-alpha = 0.99  #how fast do you want to move the slope?
-w = np.random.random((3,1)) - 1 #weights
-x = np.array([[1,0,0],[0,1,0],[0,0,1]]) #input
-y = np.array([1,1,0]).T #Output Wanted
+# Settings
+learning_rate = 0.1
+training_steps = 20
 
-#learn
-for step in range(2):
+# Training data
+# Each row is one traffic-light situation:
+# [green, yellow, red]
+x = np.array([
+    [1, 0, 0],  # green
+    [0, 1, 0],  # yellow
+    [0, 0, 1],  # red
+])
+
+# Correct answers:
+# 1 = drive
+# 0 = do not drive
+y = np.array([
+    [1],
+    [1],
+    [0],
+])
+
+# Random starting weights
+weights = np.random.randn(3, 1)
+
+# Training loop
+for step in range(training_steps):
+    total_error = 0
+
     for i in range(len(x)):
-        layer_0_x = x[i:i+1]
-        layer_1_pred =(np.dot(layer_0_x, w))
-        error = np.sum((layer_1_pred - y[i]) ** 2)
-        derivant = alpha * (layer_0_x.T.dot(layer_1_pred - y[i]))
-        w -= derivant
-        print("ERROR: ",error)
+        input_data = x[i:i+1]
+        correct_answer = y[i:i+1]
 
-#Predict
-greenLightsIseeArray = np.array([1,0,0])
-shouldIdriveSumResult = np.sum(np.dot(greenLightsIseeArray, w))
-shouldIdrive = shouldIdriveSumResult > 0
-print("Should you drive now? ", shouldIdrive)
+        prediction = np.dot(input_data, weights)
+
+        error = prediction - correct_answer
+        total_error += np.sum(error ** 2)
+
+        gradient = input_data.T.dot(error)
+        weights -= learning_rate * gradient
+
+    print("Step:", step, "Error:", total_error)
+
+# Prediction
+green_light = np.array([[1, 0, 0]])
+
+result = np.dot(green_light, weights)
+should_drive = result[0][0] > 0.5
+
+print("Prediction score:", result[0][0])
+print("Should you drive now?", should_drive)
